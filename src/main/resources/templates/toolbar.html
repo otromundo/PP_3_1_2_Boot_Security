@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+<ul th:fragment="toolbar" style="display: flex; list-style-type: none;">
+  <li sec:authorize="isAuthenticated()" style="padding-right: 10px">
+    <a href="/user">My profile</a>
+  </li>
+  <li sec:authorize="hasAuthority('ADMIN')" style="padding-right: 10px">
+    <a href="/admin">All users</a>
+  </li>
+  <li sec:authorize="hasAuthority('ADMIN')"style="padding-right: 10px">
+    <a href="/admin/users/add">Add user</a>
+  </li>
+  <li>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out">
+    </form>
+  </li>
+</ul>
+</body>
+</html>
