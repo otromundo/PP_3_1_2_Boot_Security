@@ -16,24 +16,11 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public String getUsers(Model model) {
         model.addAttribute("users", userService.getList());
+        model.addAttribute("roles", Role.values());
         return "admin";
-    }
-
-    @GetMapping("/users/add")
-    public String addUser(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("roles", Role.values());
-        return "user-form";
-    }
-
-    @GetMapping("/users/{id}/edit")
-    public String updateUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.findById(id));
-        model.addAttribute("roles", Role.values());
-        return "user-form";
     }
 
     @PostMapping("/users/save")

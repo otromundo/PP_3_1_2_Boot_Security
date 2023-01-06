@@ -23,13 +23,13 @@ public class Init {
         Set<Role> userRoles = EnumSet.of(Role.USER);
 
         User admin = new User(null, "admin", "admin", 25,
-                "admin@mail.ru", "admin", true, adminRoles);
+                "admin@mail.ru", "admin", adminRoles);
         User user1 = new User(null, "user", "user", 26,
-                "user@mail.ru", "user", true, userRoles);
+                "user@mail.ru", "user", userRoles);
         User user2 = new User(null, "Иван", "Иванов", 27,
-                "ivan@mail.ru", "ivan", true, userRoles);
+                "ivan@mail.ru", "ivan", userRoles);
         User user3 = new User(null, "Елена", "Еленова", 28,
-                "elena@mail.ru", "elena", true, userRoles);
+                "elena@mail.ru", "elena", userRoles);
 
         userService.save(admin);
         userService.save(user1);

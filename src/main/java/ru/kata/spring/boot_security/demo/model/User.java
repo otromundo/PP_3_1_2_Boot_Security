@@ -37,7 +37,6 @@ public class User implements UserDetails {
     private Integer age;
     private String email;
     private String password;
-    private boolean enabled;
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -77,7 +76,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 
     @Override
