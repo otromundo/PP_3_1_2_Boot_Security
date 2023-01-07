@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     @Transactional
     public void deleteById(Long id) {
         userRepository.deleteById(id);
@@ -62,5 +67,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username);
+    }
+
+    @Override
+    public boolean isEmailUnique(User user) {
+        User userFromDB = findByEmail(user.getEmail());
+
+        return userFromDB == null || userFromDB.getId().equals(user.getId());
     }
 }

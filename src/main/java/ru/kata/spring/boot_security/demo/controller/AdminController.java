@@ -25,7 +25,9 @@ public class AdminController {
 
     @PostMapping("/users/save")
     public String updateUser(@ModelAttribute User user) {
-        userService.save(user);
+        if (userService.isEmailUnique(user)) {
+            userService.save(user);
+        }
         return "redirect:/admin";
     }
 

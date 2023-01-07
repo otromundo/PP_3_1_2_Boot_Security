@@ -11,7 +11,11 @@ public interface UserService {
 
     User findById(Long id);
 
+    User findByEmail(String email);
+
     void deleteById(Long id);
 
     void encodePassword(User user);
+
+    boolean isEmailUnique(User user);
 }
