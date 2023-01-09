@@ -1,0 +1,12 @@
+<nav th:fragment="navbar" class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+    <span class="navbar-brand text-white pt-0">
+      <b><span class="align-middle" id="navbar-user-email"></span></b>
+      <span class="align-middle">with roles:</span>
+      <span class="align-middle" id="navbar-user-roles"></span>
+    </span>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-dark text-secondary">Logout</button>
+        </form>
+    </div>
+</nav>

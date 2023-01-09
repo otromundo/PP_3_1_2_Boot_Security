@@ -1,0 +1,54 @@
+<div th:fragment="modal" class="modal" id="edit-user-modal" onclick="resetInfoMessages()" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="resetInfoMessages()" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body w-50 mx-auto" th:align="center">
+                    <input type="hidden" id="edit-user-id">
+
+                    <strong><label for="edit-user-firstname" class="form-label">First name</label><br></strong>
+                    <input type="text" id="edit-user-firstname" class="form-control">
+                    <div class="invalid-feedback firstName"></div>
+                    <br>
+
+                    <strong><label for="edit-user-lastname" class="form-label">Last name</label><br></strong>
+                    <input type="text" id="edit-user-lastname" class="form-control">
+                    <div class="invalid-feedback lastName"></div>
+                    <br>
+
+                    <strong><label for="edit-user-age" class="form-label">Age</label><br></strong>
+                    <input type="number" id="edit-user-age" class="form-control">
+                    <div class="invalid-feedback age"></div>
+                    <br>
+
+                    <strong><label for="edit-user-email" class="form-label">E-mail</label><br></strong>
+                    <input type="text" id="edit-user-email" class="form-control">
+                    <div class="invalid-feedback email"></div>
+                    <br>
+
+                    <strong><label for="edit-user-password" class="form-label">Password</label><br></strong>
+                    <input type="password" id="edit-user-password" class="form-control">
+                    <div class="invalid-feedback password"></div>
+                    <br>
+
+                    <strong><label for="edit-user-authorities" class="form-label">Roles</label><br></strong>
+                    <select class="form-select" id="edit-user-authorities" th:name="authorities" multiple>
+                        <option value="USER">USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                    <div class="invalid-feedback authorities"></div>
+                    <br>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="resetInfoMessages()">Close</button>
+                        <button type="button" id="edit-user-form-btn" class="btn btn-primary">Edit</button>
+                    </div>
+                    <div id="user-edit-success" class="valid-feedback authorities">Done</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
