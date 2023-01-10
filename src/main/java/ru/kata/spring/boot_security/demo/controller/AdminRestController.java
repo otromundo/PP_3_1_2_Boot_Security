@@ -34,29 +34,25 @@ public class AdminRestController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getList();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return ResponseEntity.ok(users);
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/users")
-    public ResponseEntity editUser(@Valid @RequestBody User user) {
-        if (userService.isEmailUnique(user)) {
-            userService.save(user);
-        }
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> editUser(@Valid @RequestBody User user) {
+        userService.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/users")
-    public ResponseEntity createUser(@Valid @RequestBody User user) {
-        if (userService.isEmailUnique(user)) {
-            userService.save(user);
-        }
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
+        userService.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -65,9 +61,15 @@ public class AdminRestController {
         Map<String, String> errors = new HashMap<>();
 
         ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            if (error instanceof FieldError) {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            } else if ("UniqueEmail".equals(error.getCode())) {
+                errors.put("email", error.getDefaultMessage());
+            } else if ("PasswordRequired".equals(error.getCode())) {
+                errors.put("password", error.getDefaultMessage());
+            }
         });
 
         return errors;

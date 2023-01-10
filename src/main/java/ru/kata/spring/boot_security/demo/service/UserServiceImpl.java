@@ -68,11 +68,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username);
     }
-
-    @Override
-    public boolean isEmailUnique(User user) {
-        User userFromDB = findByEmail(user.getEmail());
-
-        return userFromDB == null || userFromDB.getId().equals(user.getId());
-    }
 }

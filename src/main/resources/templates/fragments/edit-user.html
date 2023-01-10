@@ -1,9 +1,9 @@
-<div th:fragment="modal" class="modal" id="edit-user-modal" onclick="resetInfoMessages()" tabindex="-1">
+<div th:fragment="modal" class="modal" id="edit-user-modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit user</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="resetInfoMessages()" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form>
                 <div class="modal-body w-50 mx-auto" th:align="center">
@@ -43,7 +43,7 @@
                     <br>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="resetInfoMessages()">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" id="edit-user-form-btn" class="btn btn-primary">Edit</button>
                     </div>
                     <div id="user-edit-success" class="valid-feedback authorities">Done</div>

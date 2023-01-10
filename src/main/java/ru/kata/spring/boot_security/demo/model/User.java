@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.kata.spring.boot_security.demo.util.validator.PasswordRequired;
+import ru.kata.spring.boot_security.demo.util.validator.UniqueEmail;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -20,12 +22,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
+@UniqueEmail
+@PasswordRequired
 @Entity
 @Getter
 @Setter
@@ -37,10 +42,10 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "First name is required")
+    @NotBlank(message = "First name is required")
     private String firstName;
 
-    @NotEmpty(message = "Last name is required")
+    @NotBlank(message = "Last name is required")
     private String lastName;
 
     @NotNull(message = "Age is required")
@@ -48,7 +53,7 @@ public class User implements UserDetails {
 
     @Column(unique = true, length = 32)
     @Email(message = "Email must be valid")
-    @NotEmpty(message = "Email is required")
+    @NotBlank(message = "Email is required")
     private String email;
 
     private String password;

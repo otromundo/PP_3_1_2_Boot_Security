@@ -29,6 +29,7 @@ function updateAdminPage() {
 }
 
 function userEditModal(i) {
+    resetInfoMessages();
     $("#edit-user-id").val(this.users[i].id);
     $("#edit-user-firstname").val(this.users[i].firstName);
     $("#edit-user-lastname").val(this.users[i].lastName);
@@ -41,6 +42,8 @@ function userEditModal(i) {
 }
 
 function userDeleteModal(i) {
+    resetInfoMessages();
+
     $("#delete-user-id").val(this.users[i].id);
     $("#delete-user-firstname").val(this.users[i].firstName);
     $("#delete-user-lastname").val(this.users[i].lastName);
@@ -60,6 +63,8 @@ function resetInfoMessages() {
 }
 
 function editUser() {
+    resetInfoMessages();
+
     let user = {
         id: $("#edit-user-id").val(),
         firstName: $("#edit-user-firstname").val(),
@@ -130,6 +135,8 @@ function createUser() {
 }
 
 function deleteUser(id) {
+    resetInfoMessages();
+
     fetch(`/api/admin/users/${id}`, {
         method: 'DELETE',
         headers: {

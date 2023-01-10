@@ -16,6 +16,4 @@ public interface UserService {
     void deleteById(Long id);
 
     void encodePassword(User user);
-
-    boolean isEmailUnique(User user);
 }
